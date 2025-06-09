@@ -8,5 +8,9 @@ router.get("/users", protectRoute, getUsersForSidebar);
 router.get("/:id", protectRoute, getMessages);
 
 router.post("/send/:id", protectRoute, sendMessage);
+router.use((req, res, next) => {
+  console.log("Incoming path:", req.path);
+  next();
+});
 
 export default router;

@@ -21,7 +21,9 @@ export const getMessages = async (req, res) => {
   try {
     const { id: userToChatId } = req.params;
     const myId = req.user._id;
-
+ if (!userToChatId) {
+      return res.status(400).json({ error: "User ID is required in the URL" });
+    }
     const messages = await Message.find({
       $or: [
         { senderId: myId, receiverId: userToChatId },
@@ -42,6 +44,10 @@ export const sendMessage = async (req, res) => {
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
+    
+    if (!receiverId) {
+      return res.status(400).json({ error: "Receiver ID is required in the URL" });
+    }
     let imageUrl;
     if (image) {
       // Upload base64 image to cloudinary

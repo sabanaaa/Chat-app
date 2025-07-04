@@ -1,4 +1,5 @@
-import {v2 as cloudinary} from "cloudinary"
+
+import { v2 as cloudinary } from "cloudinary";
 
 import { config } from "dotenv";
 
@@ -11,4 +12,3 @@ cloudinary.config({
 });
 
 export default cloudinary;
-
